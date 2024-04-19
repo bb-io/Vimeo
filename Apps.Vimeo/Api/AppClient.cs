@@ -1,4 +1,4 @@
-namespace Apps.App.Api;
+namespace Apps.Vimeo.Api;
 
 public class AppClient
 {

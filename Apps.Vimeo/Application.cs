@@ -1,6 +1,6 @@
 ﻿using Blackbird.Applications.Sdk.Common;
 
-namespace Apps.App;
+namespace Apps.Vimeo;
 
 public class Application : IApplication
 {
