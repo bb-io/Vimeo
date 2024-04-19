@@ -5,13 +5,13 @@ using Blackbird.Applications.Sdk.Common.Invocation;
 
 namespace Apps.Vimeo.Invocables;
 
-public class AppInvocable : BaseInvocable
+public class VimeoInvocable : BaseInvocable
 {
     protected AuthenticationCredentialsProvider[] Creds =>
         InvocationContext.AuthenticationCredentialsProviders.ToArray();
 
-    protected AppClient Client { get; }
-    public AppInvocable(InvocationContext invocationContext) : base(invocationContext)
+    protected VimeoClient Client { get; }
+    public VimeoInvocable(InvocationContext invocationContext) : base(invocationContext)
     {
         Client = new();
     }

@@ -9,8 +9,8 @@ public class ConnectionDefinition : IConnectionDefinition
     {
         new()
         {
-            Name = "Developer API key",
-            AuthenticationType = ConnectionAuthenticationType.Undefined,
+            Name = "OAuth",
+            AuthenticationType = ConnectionAuthenticationType.OAuth2,
             ConnectionUsage = ConnectionUsage.Actions,
             ConnectionProperties = new List<ConnectionProperty>
             {
