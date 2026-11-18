@@ -8,6 +8,19 @@ Blackbird is the new automation backbone for the language technology industry. B
 
 Vimeo is a video hosting and sharing platform. Use this app to upload videos from Blackbird workflows and set their title, description, and viewing privacy.
 
+## Connection
+
+Add a Vimeo connection in Blackbird, then sign in to the account you want to upload videos to and authorize access.
+
+## Actions
+
+### Videos
+
+- **Upload video** Upload a video file to the connected account with optional title, description, and viewing privacy settings.
+  - **Name**: Set the video title. If omitted, the title defaults to the file name.
+  - **Description**: Add a description to the video.
+  - **PrivacyView**: Choose Anybody, Nobody, or Unlisted to control who can view the video.
+
 ## Feedback
 
 Do you want to use this app or do you have feedback on our implementation? Reach out to us using the [established channels](https://www.blackbird.io/) or create an issue.
