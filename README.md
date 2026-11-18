@@ -6,7 +6,7 @@ Blackbird is the new automation backbone for the language technology industry. B
 
 <!-- begin docs -->
 
-Documentation coming soon.
+Vimeo is a video hosting and sharing platform. Use this app to upload videos from Blackbird workflows and set their title, description, and viewing privacy.
 
 ## Feedback
 
