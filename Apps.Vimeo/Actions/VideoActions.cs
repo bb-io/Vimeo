@@ -22,7 +22,7 @@ public class VideoActions : VimeoInvocable
         _fileManagementClient = fileManagementClient;
     }
 
-    [Action("Upload video", Description = "Upload a new video")]
+    [Action("Upload video", Description = "Upload a video file to the connected account with optional title, description, and viewing privacy settings.")]
     public Task UploadVideo([ActionParameter] UploadVideoRequest input)
     {
         var parameters = new List<KeyValuePair<string, string?>>()
