@@ -1,0 +1,25 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net8.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+        <Product>Vimeo</Product>
+        <Description>Video hosting, sharing, and services platform </Description>
+        <Version>1.0.1</Version>
+        <AssemblyName>Apps.Vimeo</AssemblyName>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Blackbird.Applications.Sdk.Common" Version="2.6.0"/>
+        <PackageReference Include="Blackbird.Applications.Sdk.Utils" Version="1.0.19"/>
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="image\" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <EmbeddedResource Include="..\README.md" Link="README.md" CopyToOutputDirectory="Always" />
+    </ItemGroup>
+</Project>
