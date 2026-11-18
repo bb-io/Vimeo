@@ -6,7 +6,7 @@
         <Nullable>enable</Nullable>
         <Product>Vimeo</Product>
         <Description>Video hosting, sharing, and services platform </Description>
-        <Version>1.0.4</Version>
+        <Version>1.0.5</Version>
         <AssemblyName>Apps.Vimeo</AssemblyName>
     </PropertyGroup>
 
@@ -16,10 +16,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="image\" />
-    </ItemGroup>
-
-    <ItemGroup>
+        <EmbeddedResource Include="image\icon.png" CopyToOutputDirectory="Always" />
         <EmbeddedResource Include="..\README.md" Link="README.md" CopyToOutputDirectory="Always" />
     </ItemGroup>
 </Project>
