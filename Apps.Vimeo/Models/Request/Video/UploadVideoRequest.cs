@@ -6,7 +6,7 @@ namespace Apps.Vimeo.Models.Request.Video;
 
 public class UploadVideoRequest
 {
-    public FileReference File { get; set; }
+    public FileReference File { get; set; } = default!;
     
     public string? Name { get; set; }
     
