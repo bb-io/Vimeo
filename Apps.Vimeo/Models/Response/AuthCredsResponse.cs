@@ -1,8 +1,12 @@
+using Newtonsoft.Json;
+
 namespace Apps.Vimeo.Models.Response;
 
 public class AuthCredsResponse
 {
-    public string AccessToken { get; set; }
-    
-    public UserResponse User { get; set; }
+    [JsonProperty("access_token")]
+    public string? AccessToken { get; set; }
+
+    [JsonProperty("user")]
+    public UserResponse? User { get; set; }
 }

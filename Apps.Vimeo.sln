@@ -1,5 +1,8 @@
 ﻿Microsoft Visual Studio Solution File, Format Version 12.00
+#
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Apps.Vimeo", "Apps.Vimeo\Apps.Vimeo.csproj", "{EB25604E-8EBA-464E-BEDF-30EA95395AD3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests.Vimeo", "Tests.Vimeo\Tests.Vimeo.csproj", "{6F138B14-E2BD-4095-A328-E64781E0D56C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,5 +14,9 @@ Global
 		{EB25604E-8EBA-464E-BEDF-30EA95395AD3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EB25604E-8EBA-464E-BEDF-30EA95395AD3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EB25604E-8EBA-464E-BEDF-30EA95395AD3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6F138B14-E2BD-4095-A328-E64781E0D56C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6F138B14-E2BD-4095-A328-E64781E0D56C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6F138B14-E2BD-4095-A328-E64781E0D56C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6F138B14-E2BD-4095-A328-E64781E0D56C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

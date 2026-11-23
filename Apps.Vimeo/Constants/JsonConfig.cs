@@ -7,6 +7,7 @@ public static class JsonConfig
 {
     public static JsonSerializerSettings JsonSettings => new()
     {
+        DateTimeZoneHandling = DateTimeZoneHandling.Utc,
         ContractResolver = new DefaultContractResolver()
         {
             NamingStrategy = new SnakeCaseNamingStrategy()

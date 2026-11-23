@@ -1,8 +1,22 @@
+using Blackbird.Applications.Sdk.Common.Exceptions;
+
 namespace Apps.Vimeo;
 
-public class ApplicationConstants
+public static class ApplicationConstants
 {
-    public const string ClientId = "7070048728a92a2ec18351f3015fe927d20fdcf3";
-    public const string ClientSecret = "KESeeAGV6tKqePHacKG6mNzwqRhCQookn44158pXEg7RXyEwt0Zovrq5tBOPSX2caJatyGR66jCuAN/VJKs+B1FxAmzT6fE30qkRw/gmRw4UCY8y+nXqydkps/xHozYM";
-    public const string Scope = "upload video_files create edit private";
+    public const string Scope = "public private upload video_files create edit interact";
+
+    internal static string ClientId => GetOAuthSetting("BLACKBIRD_VIMEO_CLIENT_ID");
+
+    internal static string ClientSecret => GetOAuthSetting("BLACKBIRD_VIMEO_CLIENT_SECRET");
+
+    private static string GetOAuthSetting(string name)
+    {
+        var value = Environment.GetEnvironmentVariable(name)?.Trim();
+        if (string.IsNullOrEmpty(value))
+            throw new PluginMisconfigurationException(
+                "Vimeo OAuth is not configured on this Blackbird host. Contact your Blackbird administrator or connect with a personal access token.");
+
+        return value;
+    }
 }

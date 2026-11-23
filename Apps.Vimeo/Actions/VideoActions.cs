@@ -4,40 +4,48 @@ using Apps.Vimeo.Invocables;
 using Apps.Vimeo.Models.Request.Video;
 using Blackbird.Applications.Sdk.Common;
 using Blackbird.Applications.Sdk.Common.Actions;
+using Blackbird.Applications.Sdk.Common.Exceptions;
 using Blackbird.Applications.Sdk.Common.Invocation;
-using Blackbird.Applications.SDK.Extensions.FileManagement.Interfaces;
-using Blackbird.Applications.Sdk.Utils.Extensions.Sdk;
 using RestSharp;
 
 namespace Apps.Vimeo.Actions;
 
 [ActionList]
-public class VideoActions : VimeoInvocable
+public class VideoActions(InvocationContext invocationContext)
+    : VimeoInvocable(invocationContext)
 {
-    private readonly IFileManagementClient _fileManagementClient;
-
-    public VideoActions(InvocationContext invocationContext, IFileManagementClient fileManagementClient) : base(
-        invocationContext)
+    [Action("Upload video", Description = "Upload a video file to the connected account with optional title, description, and viewing privacy settings.")]
+    public async Task UploadVideo([ActionParameter] UploadVideoRequest input)
     {
-        _fileManagementClient = fileManagementClient;
+        var userId = InvocationContext.AuthenticationCredentialsProviders
+            .FirstOrDefault(credential => credential.KeyName == CredsNames.UserId)?.Value;
+        var request = BuildUploadRequest(input, userId);
+
+        using var client = CreateClient();
+        await client.ExecuteWithErrorHandling(request);
     }
 
-    [Action("Upload video", Description = "Upload a video file to the connected account with optional title, description, and viewing privacy settings.")]
-    public Task UploadVideo([ActionParameter] UploadVideoRequest input)
+    internal static RestRequest BuildUploadRequest(UploadVideoRequest input, string? userId)
     {
-        var parameters = new List<KeyValuePair<string, string?>>()
+        if (string.IsNullOrWhiteSpace(input.File?.Url))
+            throw new PluginMisconfigurationException("Map a video file that Vimeo can retrieve from its download URL.");
+
+        var endpoint = string.IsNullOrEmpty(userId)
+            ? "me/videos"
+            : $"users/{VimeoIds.Numeric(userId, "account")}/videos";
+        var request = new RestRequest(endpoint, Method.Post);
+        var parameters = new Dictionary<string, string?>
         {
-            new("upload.link", input.File.Url ?? throw new ArgumentException("File url is empty")),
-            new("name", input.Name ?? input.File.Name),
-            new("description", input.Description),
-            new("upload.approach", "pull"),
-            new("privacy.view", input.PrivacyView)
-        }.Where(x => !string.IsNullOrWhiteSpace(x.Value)).ToList();
+            ["upload.link"] = input.File.Url,
+            ["name"] = input.Name ?? input.File.Name,
+            ["description"] = input.Description,
+            ["upload.approach"] = "pull",
+            ["privacy.view"] = input.PrivacyView
+        };
 
-        var endpoint = $"users/{Creds.Get(CredsNames.UserId).Value}/videos";
-        var request = new VimeoRequest(endpoint, Method.Post, Creds);
-        parameters.ForEach(x => request.AddParameter(x.Key, x.Value));
+        foreach (var parameter in parameters.Where(parameter => !string.IsNullOrWhiteSpace(parameter.Value)))
+            request.AddParameter(parameter.Key, parameter.Value!);
 
-        return Client.ExecuteWithErrorHandling(request);
+        return request;
     }
 }
